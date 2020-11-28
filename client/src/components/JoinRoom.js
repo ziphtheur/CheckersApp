@@ -17,7 +17,7 @@ const JoinRoom = ({loginTracker}) => {
 
     useEffect(() => {
 
-        axios.get('http://localhost:5000/')
+        axios.get('https://mern-checkers.herokuapp.com/')
             .then(res => {
                     setRooms(res.data)                    
             })
@@ -59,7 +59,7 @@ const JoinRoom = ({loginTracker}) => {
             }
             
            
-            axios.post('http://localhost:5000/join', addPlayer )
+            axios.post('https://mern-checkers.herokuapp.com/join', addPlayer )
             .then(res=> console.log(res.data))
             .catch(err => console.log(err))
             let setLoginObj = {

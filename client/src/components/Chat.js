@@ -9,7 +9,7 @@ const Chat = ({loginTracker, chatBox}) => {
     
 
     useEffect(() => {
-        socket = io('http://localhost:5000/')
+        socket = io('https://mern-checkers.herokuapp.com/')
 
         socket.emit('send msg', loginTracker.room, { name: 'Admin', text:`${loginTracker.player.name} has joined the game`, color: 'white' })
     }, [loginTracker])

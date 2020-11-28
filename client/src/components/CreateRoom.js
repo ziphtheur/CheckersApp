@@ -18,7 +18,7 @@ const CreateRoom = ({loginTracker}) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        axios.get('http://localhost:5000/')
+        axios.get('https://mern-checkers.herokuapp.com/')
         .then(res => {
             setRooms(res.data)
 
@@ -52,7 +52,7 @@ const CreateRoom = ({loginTracker}) => {
             }
             dispatch(setLogin(room))
            
-            await axios.post('http://localhost:5000/add', room)
+            await axios.post('https://mern-checkers.herokuapp.com/add', room)
             .then(res => {
                 dispatch(setId(res.data._id))
                 console.log(res.data._id)

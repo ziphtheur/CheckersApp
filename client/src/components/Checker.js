@@ -20,7 +20,7 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
     }
 
     useEffect(() => {
-        socket = io('http://localhost:5000/');
+        socket = io('https://mern-checkers.herokuapp.com/');
 
         if(loginTracker.path === 'created'){
             socket.emit('create room', loginTracker.room)
@@ -47,12 +47,12 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
             }
                 
             if(loginTracker.path === 'created'){
-                axios.put('http://localhost:5000/checkers/updateplayer1', room)
+                axios.put('https://mern-checkers.herokuapp.com/checkers/updateplayer1', room)
                 .then(res => console.log(res))
                 .catch(err => console.log(err));
             }
             if(loginTracker.path === 'joined'){
-                axios.put('http://localhost:5000/checkers/updateplayer2', room)
+                axios.put('https://mern-checkers.herokuapp.com/checkers/updateplayer2', room)
             .then(res => console.log(res))
             .catch(err => console.log(err));
             }            
