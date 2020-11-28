@@ -15,11 +15,7 @@ const port = process.env.PORT || 5000;
 const app = express();
 app.use(cors());
 const server = http.createServer(app);
-const io = socketio(server, options);
-const options = {
-    cors:true,
-    origins:["https://mern-checkers.herokuapp.com/"]
-}
+const io = socketio(server);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
