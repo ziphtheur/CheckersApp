@@ -13,6 +13,7 @@ require('dotenv').config();
 const port = process.env.PORT || 5000;
 
 const app = express();
+app.use(cors());
 const server = http.createServer(app);
 const io = socketio(server, options);
 const options = {
@@ -21,7 +22,7 @@ const options = {
 }
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+
 
 const URI = process.env.ATLAS_URI;
 
