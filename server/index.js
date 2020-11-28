@@ -3,6 +3,7 @@ const socketio = require('socket.io');
 const http = require('http');
 const router = require('./router');
 const mongoose = require('mongoose');
+const cors = require('cors');
 let Rooms = require('./models/room.model')
 
 
@@ -15,6 +16,7 @@ const server = http.createServer(app);
 const io = socketio(server);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 const URI = process.env.ATLAS_URI;
 
