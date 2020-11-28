@@ -4,7 +4,8 @@ const http = require('http');
 const router = require('./router');
 const mongoose = require('mongoose');
 const cors = require('cors');
-let Rooms = require('./models/room.model')
+let Rooms = require('./models/room.model');
+const { options } = require('./router');
 
 
 require('dotenv').config();
@@ -13,7 +14,11 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 const server = http.createServer(app);
-const io = socketio(server);
+const io = socketio(server, options);
+const options = {
+    cors:true,
+    origins:["https://mern-checkers.herokuapp.com/"]
+}
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
