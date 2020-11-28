@@ -1,0 +1,71 @@
+.app-container{
+    height: 100vh;
+    width: 100vw;
+}
+
+.board-container{
+    margin: auto;
+    width: 80vw;
+    height: 80vw;
+    justify-content: center;
+   
+    
+}
+
+.board {
+    position: absolute;
+    left: 20vw;
+    top: 5vh;
+    display: grid;
+    grid: [rowA-start] "A1 A2 A3 A4 A5 A6 A7 A8" 75px [rowA-end]
+          [rowB-start] "B1 B2 B3 B4 B5 B6 B7 B8" 75px [rowB-end]
+          [rowC-start] "C1 C2 C3 C4 C5 C6 C7 C8" 75px [rowC-end]
+          [rowD-start] "D1 D2 D3 D4 D5 D6 D7 D8" 75px [rowD-end]
+          [rowE-start] "E1 E2 E3 E4 E5 E6 E7 E8" 75px [rowE-end]
+          [rowF-start] "F1 F2 F3 F4 F5 F6 F7 F8" 75px [rowF-end]
+          [rowG-start] "G1 G2 G3 G4 G5 G6 G7 G8" 75px [rowG-end]
+          [rowH-start] "H1 H2 H3 H4 H5 H6 H7 H8" 75px [rowH-end]
+          / 75px 75px 75px 75px 75px 75px 75px 75px;
+}
+
+.board2{
+    position: absolute;
+    left: 20vw;
+    top: 5vh;
+    display: grid;
+    grid: [rowA-start] "A1 A2 A3 A4 A5 A6 A7 A8" 75px [rowA-end]
+        [rowB-start] "B1 B2 B3 B4 B5 B6 B7 B8" 75px [rowB-end]
+        [rowC-start] "C1 C2 C3 C4 C5 C6 C7 C8" 75px [rowC-end]
+        [rowD-start] "D1 D2 D3 D4 D5 D6 D7 D8" 75px [rowD-end]
+        [rowE-start] "E1 E2 E3 E4 E5 E6 E7 E8" 75px [rowE-end]
+        [rowF-start] "F1 F2 F3 F4 F5 F6 F7 F8" 75px [rowF-end]
+        [rowG-start] "G1 G2 G3 G4 G5 G6 G7 G8" 75px [rowG-end]
+        [rowH-start] "H1 H2 H3 H4 H5 H6 H7 H8" 75px [rowH-end]
+        / 75px 75px 75px 75px 75px 75px 75px 75px;
+        z-index: 2;
+}
+
+.box{
+    width: 75px;
+    height:  75px;
+    border: 1px solid black;
+    color: white;
+}
+
+.red{
+    background-color: red;
+}
+
+.black{
+    background-color: black;
+}
+
+.turn {
+    border: 1px solid black;
+    font-size: 18px;
+    position: absolute;
+    left: 1vw;
+    top: 20vh;
+    line-height: 1.6;
+    padding: 0 5px 0 5px;
+}

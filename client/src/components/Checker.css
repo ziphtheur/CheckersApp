@@ -1,0 +1,150 @@
+.checker {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    align-self: center;
+    justify-self: center;
+    transition-duration: .7s;
+    z-index: 2;
+    
+    
+}
+[data-highlight = true]{
+    transition-duration: 0s;
+    border-radius: 0;
+    background-color: yellowgreen;
+    z-index: 5;
+    width:  75px;
+    height: 75px;
+}
+[data-color = 'blue']{
+    background-color: blue;
+    border: 2px outset blue;
+}
+
+[data-color = 'white']{
+    background-color: white;
+    border: 2px outset white
+}
+[data-selected = true]{
+    border: 2px solid yellowgreen;
+}
+.king{
+    margin-left: 8%;
+    margin-top: 30%;
+    font-size: 22px;
+}
+[data-color = 'blue'] .king{
+    color: white;
+}
+
+[data-king = 'false'] .king{
+    visibility: hidden;
+}
+
+.reset {
+    border: 1px solid black;
+    font-size: 18px;
+    position: absolute;
+    left: -10vw;
+    top: 30vh;
+    line-height: 1.6;
+    
+}
+
+[data-grid = 'A1']{
+    grid-area: A1;
+}
+[data-grid = 'A3']{
+    grid-area: A3;
+}
+[data-grid = 'A5']{
+    grid-area: A5;
+}
+[data-grid = 'A7']{
+    grid-area: A7;
+}
+[data-grid='B2']{
+    grid-area: B2;
+}
+[data-grid='B4']{
+    grid-area: B4;
+}
+[data-grid='B6']{
+    grid-area: B6;
+}
+[data-grid='B8']{
+    grid-area: B8;
+}
+[data-grid='C1']{
+    grid-area: C1;
+}
+[data-grid='C3']{
+    grid-area: C3;
+}
+[data-grid='C5']{
+    grid-area: C5;
+}
+[data-grid='C7']{
+    grid-area: C7;
+}
+[data-grid='D2']{
+    grid-area: D2;
+}
+[data-grid='D4']{
+    grid-area: D4;
+}
+[data-grid='D6']{
+    grid-area: D6;
+}
+[data-grid='D8']{
+    grid-area: D8;
+}
+[data-grid='E1']{
+    grid-area: E1;
+}
+[data-grid='E3']{
+    grid-area: E3;
+}
+[data-grid='E5']{
+    grid-area: E5;
+}
+[data-grid='E7']{
+    grid-area: E7;
+}
+[data-grid='F2']{
+    grid-area: F2;
+}
+[data-grid='F4']{
+    grid-area: F4;
+}
+[data-grid='F6']{
+    grid-area: F6;
+}
+[data-grid='F8']{
+    grid-area: F8;
+}
+[data-grid='G1']{
+    grid-area: G1;
+}
+[data-grid = "G3"]{
+    grid-area: G3;
+}
+[data-grid='G5']{
+    grid-area: G5;
+}
+[data-grid='G7']{
+    grid-area: G7;
+}
+[data-grid='H2']{
+    grid-area: H2;
+}
+[data-grid='H4']{
+    grid-area: H4;
+}
+[data-grid='H6']{
+    grid-area: H6;
+}
+[data-grid='H8']{
+    grid-area: H8;
+}

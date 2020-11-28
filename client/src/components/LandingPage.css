@@ -1,0 +1,72 @@
+.landingPage-container {
+    height: 100vh;
+    background: black;
+    margin: 0%;
+}
+.landingPage-header, .button-container {
+    display: flex;
+    justify-content: center;    
+}
+.landingPage-header{
+    z-index: 3;
+}
+.button-container{
+    z-index: -1;
+}
+.checkers-logo {
+    height: 17vh;
+    width: 35vw;
+}
+.online-logo {
+    margin-top: -15vh;
+    width:35vw;
+    margin-bottom: -17.1vh;
+}
+.landingPage-bodypic{
+    position: relative;
+    width: 80vw;
+    height: 70vh;
+    margin-top: -1.3vh;
+    margin-left: 8vw;
+    border: 1px ridge gray;
+    z-index: 2;
+}
+.button {
+    margin-top: -1.2vh;
+    font-size: 36px;
+    width: 35vw;
+    color: white;
+    height: 10vh;
+    border: 2px ridge gray;
+    z-index: 1;
+    outline: none;
+}
+.button:hover{
+    color: white;
+    
+}
+.create-room {
+    background: #00ccff;
+    border-bottom-left-radius: 50% 100% ;
+    text-indent: 5vw; 
+    color: black;  
+    transition-duration: .2s; 
+}
+.create-room:hover {
+    background: blue;
+}
+.join-room {
+    background: rgb(200, 0, 0);
+    border-bottom-right-radius:  50% 100%;
+    text-align: start;
+    text-indent: 6vw;
+    color: black; 
+    transition-duration: .2s;
+}
+.join-room:hover {
+    background-color: rgb(255, 0, 0);
+}
+.invis{
+    display: none;
+}
+

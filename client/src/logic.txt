@@ -1,0 +1,14 @@
+find selected checker square 
+	find using class or data selector
+find the 2 squares to whch the checker can move
+	array by using index number
+find if either of the squares are occupied
+	if so find if the square behind this square (specific index number)
+		if so cant move that direction
+	else you may jump the checker
+		after jumping the checker check the squares in the directional it could move for enemy checkers
+            if enemy checkers exist check if the space behind them is empty
+                if the space is empty you may jump them
+    if any checker is in the king row king them and give them king rules(prob both blue and white checker rules)
+    end turn
+ 

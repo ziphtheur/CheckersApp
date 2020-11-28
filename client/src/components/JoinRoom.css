@@ -1,0 +1,64 @@
+.join-room-form{
+    position: absolute;
+    display: block;
+    top: 16.7vh;
+    left: 8.4vw;
+    width: 80.25vw;
+    height: 70vh;
+    background-color: rgba(255, 255, 255, 0.75);
+    z-index: 3;
+}
+.join-container {
+    background: chartreuse;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table{
+    width: 90%;
+    margin-left: 5%;
+    font-size: 22px;
+    margin-top: 20px;
+}
+thead, tbody {
+    display: block;  
+}
+th, td{
+    width: 25vw;
+    text-align: center;
+}
+
+thead {
+    background: gray;
+}
+tbody{
+    overflow-y: scroll;
+    height: 45vh;
+}
+
+.join-input {
+    font-size: 20px;
+    align-self: flex-end;
+    flex: 1;
+    margin-right: 5px;
+}
+.join-button{
+    position: absolute;
+    font-size: 24px;
+    background:  rgb(200, 0, 0);
+    width: 10vw;
+    height: 8vh;
+    bottom: 10px;
+    right:10vw;
+    transition-duration: .2s;
+}
+.join-button:hover {
+    background: red;
+    color: white;
+}
+.join-game-div{
+    display: flex;
+    height: 5vh;
+}
