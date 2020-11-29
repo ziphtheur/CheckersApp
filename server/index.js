@@ -3,7 +3,7 @@ const socketio = require('socket.io');
 const http = require('http');
 const router = require('./router');
 const mongoose = require('mongoose');
-const cors = require("cors")
+const cors = require("cors");
 let Rooms = require('./models/room.model');
 
 
@@ -14,7 +14,7 @@ const port = process.env.PORT || 5000;
 const app = express();
 app.use(cors());
 const server = http.createServer(app);
-const io = socketio(server)(httpServer, {
+const io = socketio(server, {
     cors: {
         origin: "https://mern-checkers.netlify.app/",
         methods: ["GET", "POST"]
