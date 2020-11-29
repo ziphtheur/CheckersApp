@@ -14,8 +14,8 @@
     border-radius: 0;
     background-color: yellowgreen;
     z-index: 5;
-    width:  75px;
-    height: 75px;
+    width:  100%;
+    height: 100%;
 }
 [data-color = 'blue']{
     background-color: blue;
