@@ -3,9 +3,7 @@ const socketio = require('socket.io');
 const http = require('http');
 const router = require('./router');
 const mongoose = require('mongoose');
-const cors = require('cors');
 let Rooms = require('./models/room.model');
-const { options } = require('./router');
 
 
 require('dotenv').config();
@@ -13,13 +11,13 @@ require('dotenv').config();
 const port = process.env.PORT || 5000;
 
 const app = express();
-app.use((req,res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-Width, Content-Type, Accept");
-    next();
-});
 const server = http.createServer(app);
-const io = socketio(server);
+const io = socketio(server)(httpServer, {
+    cors: {
+        origin: "https://mern-checkers.netlify.app/",
+        methods: ["GET", "POST"]
+    }
+});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
