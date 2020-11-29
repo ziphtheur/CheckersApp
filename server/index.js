@@ -16,7 +16,7 @@ app.use(cors());
 const server = http.createServer(app);
 const io = socketio(server, {
     cors: {
-        origin: "https://mern-checkers.netlify.app/",
+        origin: 'https://mern-checkers.netlify.app',
         methods: ["GET", "POST"]
     }
 });
