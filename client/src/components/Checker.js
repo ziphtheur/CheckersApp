@@ -21,6 +21,7 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
 
     useEffect(() => {
         socket = io('https://mern-checkers.herokuapp.com/');
+        let socketid = socket.id;
 
         if(loginTracker.path === 'created'){
             socket.emit('create room', loginTracker.room)
@@ -37,26 +38,24 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
             dispatch(addText(msg));
         })
                 
-        socket.on('connect', async () => {
-                let socketid = await socket.id
-            let room =  {
-                name: loginTracker.player.name,
-                color: loginTracker.player.color,
-                socket: socketid,
-                id: loginTracker.id                
-            }
+        let room =  {
+            name: loginTracker.player.name,
+            color: loginTracker.player.color,
+            socket: socketid,
+            id: loginTracker.id                
+        }
                 
-            if(loginTracker.path === 'created'){
-                axios.post('https://mern-checkers.herokuapp.com/checkers/updateplayer1', room)
-                .then(res => console.log(res))
-                .catch(err => console.log(err));
-            }
-            if(loginTracker.path === 'joined'){
-                axios.post('https://mern-checkers.herokuapp.com/checkers/updateplayer2', room)
+        if(loginTracker.path === 'created'){
+            axios.post('https://mern-checkers.herokuapp.com/checkers/updateplayer1', room)
             .then(res => console.log(res))
             .catch(err => console.log(err));
-            }            
-        })   
+        }
+        if(loginTracker.path === 'joined'){
+            axios.post('https://mern-checkers.herokuapp.com/checkers/updateplayer2', room)
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+        }            
+          
 
     }, [loginTracker, dispatch])
     
