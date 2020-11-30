@@ -61,6 +61,28 @@ connection.once('open', () => {
         console.log(roomName, msg)
         io.in(roomName).emit('recieve msg', msg)
     })
+    socket.on('update socketid', room => {
+        if(room.path === 'created'){
+            let newRoom = {
+                player1: {
+                    color: room.color,
+                    name: room.name,
+                    socketid: room.socket
+                }
+            }        
+            Rooms.findByIdAndUpdate(room.id, newRoom)            
+        }
+        if(room.path === 'joined'){
+            let newRoom = {
+                player2: {
+                    color: room.color,
+                    name: room.name,
+                    socketid: room.socket
+                }
+            }
+            Rooms.findByIdAndUpdate(room.id, newRoom)
+        }   
+    })
     
     socket.on('disconnect', async () => {
         let newSocket = await socket.id;

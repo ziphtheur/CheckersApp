@@ -21,7 +21,6 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
 
     useEffect(() => {
         socket = io('https://mern-checkers.herokuapp.com/');
-        let socketid = socket.id;
 
         if(loginTracker.path === 'created'){
             socket.emit('create room', loginTracker.room)
@@ -37,25 +36,27 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
             console.log(msg)
             dispatch(addText(msg));
         })
-                console.log(socketid);
-        let room =  {
-            name: loginTracker.player.name,
-            color: loginTracker.player.color,
-            socket: socketid,
-            id: loginTracker.id                
-        }
                 
-        if(loginTracker.path === 'created'){
-            axios.post('https://mern-checkers.herokuapp.com/checkers/updateplayer1', room)
-            .then(res => console.log(res))
-            .catch(err => console.log(err));
-        }
-        if(loginTracker.path === 'joined'){
-            axios.post('https://mern-checkers.herokuapp.com/checkers/updateplayer2', room)
-            .then(res => console.log(res))
-            .catch(err => console.log(err));
-        }            
-          
+        socket.on('connect', async () => {
+                let socketid = await socket.id
+            let room =  {
+                name: loginTracker.player.name,
+                color: loginTracker.player.color,
+                socket: socketid,
+                id: loginTracker.id,
+                path: loginTracker.path                
+            }
+            console.log(room.socket)
+                
+            if(loginTracker.path === 'created'){
+                axios.post('https://mern-checkers.herokuapp.com/checkers/updateplayer1', room)
+                socket.emit('update socketid', room);
+            }
+            if(loginTracker.path === 'joined'){
+                axios.post('https://mern-checkers.herokuapp.com/checkers/updateplayer2', room)
+                socket.emit('update socketid', room);
+            }            
+        })   
 
     }, [loginTracker, dispatch])
     
