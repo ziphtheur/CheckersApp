@@ -48,27 +48,33 @@ router.route('/checkers/:room').delete((req,res) => {
     .catch(err => console.log(err))
 })
 
-router.route('/checkers/update').post(cors(), (req, res) => {
+router.route('/checkers/update').post((req, res) => {
     if(req.body.path === 'created'){
-        let newRoom = {
-            player1: {
+        let newRoom = {            
                 color: req.body.color,
                 name: req.body.name,
-                socketid: req.body.socket
-            }
+                socketid: req.body.socket            
         }        
-        Rooms.findByIdAndUpdate({ _id: req.body.id }, newRoom)  
+        Rooms.findById(req.body.id)
+        .then(room =>{
+            room.player1 = newRoom
+
+            room.save()
+        })
+          
                   
     }
     if(req.body.path === 'joined'){
         let newRoom = {
-            player2: {
                 color: req.body.color,
                 name: req.body.name,
                 socketid: req.body.socket
-            }
         }
-        Rooms.findByIdAndUpdate({ _id: req.body.id }, newRoom)
+        Rooms.findById(req.body.id)
+        .then(room =>{
+            room.player2 = newRoom
+
+            room.save()
     }   
 })
 
