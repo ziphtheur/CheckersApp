@@ -12,7 +12,7 @@ require('dotenv').config();
 const port = process.env.PORT || 5000;
 
 const app = express();
-app.use(cors());
+app.options('*', cors())
 const server = http.createServer(app);
 const io = socketio(server, {
     cors: {

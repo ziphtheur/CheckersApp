@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const cors = require('cors')
 let Rooms = require('./models/room.model')
 
 router.route('/add').post((req, res) => {
@@ -47,7 +48,7 @@ router.route('/checkers/:room').delete((req,res) => {
     .catch(err => console.log(err))
 })
 
-router.route('/checkers/update').post((req, res) => {
+router.route('/checkers/update').post(cors(), (req, res) => {
     if(req.body.path === 'created'){
         let newRoom = {
             player1: {
