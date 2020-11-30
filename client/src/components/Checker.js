@@ -47,12 +47,12 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
             }
                 
             if(loginTracker.path === 'created'){
-                axios.put('https://mern-checkers.herokuapp.com/checkers/updateplayer1', room)
+                axios.post('https://mern-checkers.herokuapp.com/checkers/updateplayer1', room)
                 .then(res => console.log(res))
                 .catch(err => console.log(err));
             }
             if(loginTracker.path === 'joined'){
-                axios.put('https://mern-checkers.herokuapp.com/checkers/updateplayer2', room)
+                axios.post('https://mern-checkers.herokuapp.com/checkers/updateplayer2', room)
             .then(res => console.log(res))
             .catch(err => console.log(err));
             }            

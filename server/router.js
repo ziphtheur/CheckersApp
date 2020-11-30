@@ -61,7 +61,7 @@ router.route('/disconnectplayer2').put((req, res) => {
     
 })
 //Rooms.find({ player1: { id: req.body.id }})
-router.route('/checkers/updateplayer1').put((req, res) => {
+router.route('/checkers/updateplayer1').post((req, res) => {
     let newRoom = {
         player1: {
             color: req.body.color,
@@ -76,7 +76,7 @@ router.route('/checkers/updateplayer1').put((req, res) => {
     console.log('socket added')
     
 })
-router.route('/checkers/updateplayer2').put((req, res) => {
+router.route('/checkers/updateplayer2').post((req, res) => {
     let newRoom = {
         player2: {
             color: req.body.color,
