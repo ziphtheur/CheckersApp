@@ -71,7 +71,7 @@ connection.once('open', () => {
                     socketid: room.socket
                 }
             }        
-            Rooms.findByIdAndUpdate(room.id, newRoom)  
+            Rooms.findByIdAndUpdate({ _id: room.id }, newRoom)  
                       
         }
         if(room.path === 'joined'){
@@ -82,7 +82,7 @@ connection.once('open', () => {
                     socketid: room.socket
                 }
             }
-            Rooms.findByIdAndUpdate(room.id, newRoom)
+            Rooms.findByIdAndUpdate({ _id: room.id }, newRoom)
         }   
     })
     
