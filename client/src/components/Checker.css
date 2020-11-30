@@ -101,16 +101,16 @@
     grid-area: D8;
 }
 [data-grid='E1']{
-    grid-area: e1;
+    grid-area: E1;
 }
 [data-grid='E3']{
-    grid-area: e3;
+    grid-area: E3;
 }
 [data-grid='E5']{
-    grid-area: e5;
+    grid-area: E5;
 }
 [data-grid='E7']{
-    grid-area: e7;
+    grid-area: E7;
 }
 [data-grid='F2']{
     grid-area: F2;
