@@ -61,7 +61,8 @@ connection.once('open', () => {
         console.log(roomName, msg)
         io.in(roomName).emit('recieve msg', msg)
     })
-    socket.on('update socketid', room => {
+    socket.on('update socketid', (room) => {
+        console.log(room)
         if(room.path === 'created'){
             let newRoom = {
                 player1: {
@@ -70,7 +71,8 @@ connection.once('open', () => {
                     socketid: room.socket
                 }
             }        
-            Rooms.findByIdAndUpdate(room.id, newRoom)            
+            Rooms.findByIdAndUpdate(room.id, newRoom)  
+                      
         }
         if(room.path === 'joined'){
             let newRoom = {

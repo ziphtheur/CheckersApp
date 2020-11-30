@@ -46,13 +46,8 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
                 id: loginTracker.id,
                 path: loginTracker.path                
             }
-                console.log(room)
-            if(loginTracker.path === 'created'){
-                socket.emit('update socketid', room);
-            }
-            if(loginTracker.path === 'joined'){
-                socket.emit('update socketid', room);
-            }            
+            console.log(room)
+            socket.emit('update socketid', room);          
         })   
 
     }, [loginTracker, dispatch])
