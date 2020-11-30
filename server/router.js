@@ -47,46 +47,6 @@ router.route('/checkers/:room').delete((req,res) => {
     .catch(err => console.log(err))
 })
 
-router.route('/disconnectplayer1').put((req, res) => {
-    Rooms.findByIdAndUpdate(req.body.id, {player1: {}})
-        .then(() => console.log('room disconnected!'))
-        .catch(err => console.log(err));
-    
-})
-router.route('/disconnectplayer2').put((req, res) => {
-    Rooms.findByIdAndUpdate(req.body.id, {player2: {}})
-        .then(() => console.log('room disconnected!'))
-        .catch(err => console.log(err));
-    
-})
-//Rooms.find({ player1: { id: req.body.id }})
-router.route('/checkers/updateplayer1').post((req, res) => {
-    let newRoom = {
-        player1: {
-            color: req.body.color,
-            name: req.body.name,
-            socketid: req.body.socket
-        }
-    }
 
-    Rooms.findByIdAndUpdate(req.body.id, newRoom)
-    .then(() => console.log('socket updated'))
-    .catch(err => console.log(err));
-    console.log('socket added')
-    
-})
-router.route('/checkers/updateplayer2').post((req, res) => {
-    let newRoom = {
-        player2: {
-            color: req.body.color,
-            name: req.body.name,
-            socketid: req.body.socket
-        }
-    }
-    Rooms.findByIdAndUpdate(req.body.id, newRoom)
-    .then(() => res.json('socket added'))
-    .catch(err => console.log(err));
-    console.log('socket added')
-})
 
 module.exports = router;

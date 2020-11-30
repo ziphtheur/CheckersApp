@@ -46,14 +46,11 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
                 id: loginTracker.id,
                 path: loginTracker.path                
             }
-            console.log(room.socket)
                 
             if(loginTracker.path === 'created'){
-                axios.post('https://mern-checkers.herokuapp.com/checkers/updateplayer1', room)
                 socket.emit('update socketid', room);
             }
             if(loginTracker.path === 'joined'){
-                axios.post('https://mern-checkers.herokuapp.com/checkers/updateplayer2', room)
                 socket.emit('update socketid', room);
             }            
         })   
@@ -68,7 +65,6 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
         const highlightNorth = (int) => dispatch(checkerHighlight(getAttrib("data-key") - int));
         const highlightSouth = (int) => dispatch(checkerHighlight(parseInt(getAttrib("data-key"), 10) + int));
         let highlight = false;
-        console.log(loginTracker)
         //if clicked square is highlighted move selected checker and unselect it clear all highlights
         if(getAttrib("data-highlight") === "true"){
             if(selected - getAttrib("data-key") === 7){
