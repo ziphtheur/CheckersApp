@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { connect, useDispatch} from 'react-redux'; 
-import { checkerHighlight, clearHighlight, checkerMove, setKing, deleteChecker, changeTurn, resetBoard, resetTurn , addText} from '../actions';
-import axios from 'axios';
+import { checkerHighlight, clearHighlight, checkerMove, setKing, deleteChecker, 
+    changeTurn, resetBoard, resetTurn , addText} from '../actions';
 import io from 'socket.io-client';
 
 
