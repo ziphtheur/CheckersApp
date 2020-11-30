@@ -37,7 +37,7 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
             console.log(msg)
             dispatch(addText(msg));
         })
-                
+                console.log(socketid);
         let room =  {
             name: loginTracker.player.name,
             color: loginTracker.player.color,
