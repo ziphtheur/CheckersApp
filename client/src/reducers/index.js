@@ -116,28 +116,28 @@ const checkerLocationReducer = {
                 row: 'even'
             },
         16: {
-                location:'E1',
+                location:'Z1',
                 color: null,
                 king: false,
                 highlight: false,
                 row: 'odd'
             },
         17: {
-                location:'E3',
+                location:'Z3',
                 color: null,
                 king: false,
                 highlight: false,
                 row: 'odd'
             },
         18: {
-                location:'E5',
+                location:'Z5',
                 color: null,
                 king: false,
                 highlight: false,
                 row: 'odd'
             },
         19: {
-                location:'E7',
+                location:'Z7',
                 color: null,
                 king: false,
                 highlight: false,
