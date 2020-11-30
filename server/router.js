@@ -75,7 +75,8 @@ router.route('/checkers/update').post((req, res) => {
             room.player2 = newRoom
 
             room.save()
-    }   
+        })   
+    }
 })
 
 module.exports = router;
