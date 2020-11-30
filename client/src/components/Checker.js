@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { connect, useDispatch} from 'react-redux'; 
 import { checkerHighlight, clearHighlight, checkerMove, setKing, deleteChecker, 
     changeTurn, resetBoard, resetTurn , addText} from '../actions';
+import axios from 'axios';
 import io from 'socket.io-client';
 
 
@@ -38,7 +39,7 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
         })
                 
         socket.on('connect', async () => {
-                let socketid = await socket.id
+            let socketid = await socket.id
             let room =  {
                 name: loginTracker.player.name,
                 color: loginTracker.player.color,
@@ -47,7 +48,7 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
                 path: loginTracker.path                
             }
             console.log(room)
-            socket.emit('update socketid', room);          
+            axios.post('https://mern-checkers.herokuapp.com/checkers/update', room)          
         })   
 
     }, [loginTracker, dispatch])

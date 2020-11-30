@@ -47,6 +47,28 @@ router.route('/checkers/:room').delete((req,res) => {
     .catch(err => console.log(err))
 })
 
-
+router.route('/checkers/update').post((req, res) => {
+    if(req.body.path === 'created'){
+        let newRoom = {
+            player1: {
+                color: req.body.color,
+                name: req.body.name,
+                socketid: req.body.socket
+            }
+        }        
+        Rooms.findByIdAndUpdate({ _id: req.body.id }, newRoom)  
+                  
+    }
+    if(req.body.path === 'joined'){
+        let newRoom = {
+            player2: {
+                color: req.body.color,
+                name: req.body.name,
+                socketid: req.body.socket
+            }
+        }
+        Rooms.findByIdAndUpdate({ _id: req.body.id }, newRoom)
+    }   
+})
 
 module.exports = router;
