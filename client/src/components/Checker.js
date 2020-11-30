@@ -48,7 +48,9 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
                 path: loginTracker.path                
             }
             console.log(room)
-            axios.post('https://mern-checkers.herokuapp.com/checkers/update', room)          
+            await axios.post('https://mern-checkers.herokuapp.com/checkers/update', room)   
+            .then(res => console.log(res))
+            .catch(err => console.log(err))       
         })   
 
     }, [loginTracker, dispatch])
