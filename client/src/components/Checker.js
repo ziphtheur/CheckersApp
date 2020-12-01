@@ -40,7 +40,8 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
             if(name && name !== loginTracker.player.name){
                 setOpponentName(name)
                 if(loginTracker.path === 'created'){
-                    socket.emit('send msg',loginTracker.room, { name: loginTracker.player.name, text:`Welcome ${name}`},
+                    socket.emit('send msg',loginTracker.room, 
+                    { name: loginTracker.player.name, text:`Welcome ${name}`, color: loginTracker.player.color},
                     loginTracker.player.name)
                 }
             }
