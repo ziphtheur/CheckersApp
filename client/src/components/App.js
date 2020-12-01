@@ -8,9 +8,9 @@ class App extends React.Component{
 
     turnName = () => {
         if(this.props.turnTracker.turn === this.props.loginTracker.player.color){
-            return 'Your Turn'
+            return `${this.props.loginTracker.player.name}'s Turn`
         }else{
-            return 'Opponent\'s Turn'
+            return `${this.props.opponentName.name}'s Turn` //<<<<<<<< FINISH THIS
         }
     }
 
@@ -18,14 +18,15 @@ class App extends React.Component{
         return(
             <div className="app-container">
                 <Board />
-                <div className="turn">{` Player Turn: ${this.turnName()} `}</div>
+                <div className="turn">{this.turnName()}</div>
             </div>
         );
     }
 }
 const mapStateToProps = (state) => {
     return { turnTracker : state.turnTracker,
-        loginTracker: state.loginTracker }
+        loginTracker: state.loginTracker,
+        opponentName: state.opponentName }
 }
 
 export default connect(mapStateToProps)(App);;

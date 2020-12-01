@@ -10,6 +10,7 @@
     color: white;
     border: 1px solid black;
     overflow-y: scroll;
+    overflow-x: hidden;
     overflow-wrap: break-word;
     flex-direction: column-reverse;
 }
@@ -30,8 +31,4 @@
     font-size: 20px;
     right: 1vw;
     top: 80.1vh;
-}
-.single-message{
-    display: flex;
-    
 }

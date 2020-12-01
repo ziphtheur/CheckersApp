@@ -1,3 +1,4 @@
+
 .checker {
     width: 80%;
     height: 80%;
@@ -51,6 +52,25 @@
     line-height: 1.6;
     
 }
+.player-name, .opponent-name{
+    position: absolute;
+    padding: 5px;
+    margin-bottom: 0;
+    background: black;
+    font-weight: 500;
+    bottom: -.15vh;
+    left: -15vw;
+    width: 14.5vw;
+    height: 4.5vh;
+    overflow: hidden;
+    font-size: 24px;
+    z-index: -1;
+}
+.opponent-name{
+     top: 0;
+     margin-top: 0;    
+}
+
 
 [data-grid = 'A1']{
     grid-area: A1;

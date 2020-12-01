@@ -69,4 +69,10 @@ export const addText = (msg) => {
         payload: msg
     }
 }
+export const setOpponentName = (name) => {
+    return{
+        type: "OPPONENT_NAME",
+        payload: name
+    }
+}
     

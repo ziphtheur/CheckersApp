@@ -258,33 +258,35 @@ const clickReducer = createReducer(checkerLocationReducer,{
     }
 })
 
-const turnTracker = createReducer({turn: 'blue'}, {
-    CHANGE_TURN: (state, action) => {
-        if(state.turn === 'blue'){ state.turn = 'white'}
-        else {state.turn = 'blue'}
-    },
-    RESET_TURN: (state, action) => {
-        state.turn = 'blue';
-    }
-})
+const turnTracker = createReducer(
+    {turn: 'blue'}, 
+    {
+        CHANGE_TURN: (state, action) => {
+            if(state.turn === 'blue'){ state.turn = 'white'}
+            else {state.turn = 'blue'}
+        },
+        RESET_TURN: (state, action) => {
+            state.turn = 'blue';
+        }
+    })
 
 const loginTracker = createReducer(
     {player: '',
     room: '',
     id: '',
-    path:''
-}, 
-{
-    SET_LOGIN: (state, action) => {
-        state.player = action.payload.player;
-        state.room = action.payload.room;
-        state.path = action.payload.path;
-    },
-    SET_ID: (state, action) => { 
-        state.id = action.payload
-        }
-    
-}
+    path:'',
+    opponent: ''
+    }, 
+    {
+        SET_LOGIN: (state, action) => {
+            state.player = action.payload.player;
+            state.room = action.payload.room;
+            state.path = action.payload.path;
+        },
+        SET_ID: (state, action) => { 
+            state.id = action.payload
+        }       
+    }
 )
 
 const chatBox = createReducer([],
@@ -298,9 +300,20 @@ const chatBox = createReducer([],
 
 )
 
+const opponentName = createReducer(
+    {name: ''},
+    {
+        OPPONENT_NAME: (state, action) => {
+            state.name = action.payload
+        }
+    }
+     
+)
+
 export default combineReducers({
     turnTracker: turnTracker,
     movementReducer : clickReducer,
     loginTracker: loginTracker,
-    chatBox: chatBox
+    chatBox: chatBox,
+    opponentName: opponentName
 })

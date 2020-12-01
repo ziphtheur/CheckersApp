@@ -1,18 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import { connect, useDispatch} from 'react-redux'; 
 import { checkerHighlight, clearHighlight, checkerMove, setKing, deleteChecker, 
-    changeTurn, resetBoard, resetTurn , addText} from '../actions';
+    changeTurn, resetBoard, resetTurn , addText, setOpponentName} from '../actions';
 import axios from 'axios';
 import io from 'socket.io-client';
 
 
 let socket;
-const Checker = ({movementReducer, turnTracker, loginTracker}) => {
+const Checker = ({movementReducer, turnTracker, loginTracker, opponentName}) => {
     const [selected, setSelected] = useState(null);
     const [selectedColor, setSelectedColor] = useState(null);
     const [selectedKing, setSelectedKing] = useState(false);
-    const [alreadyJumped, setAlreadyJumped] = useState(false); 
-    const [opponentName, setOpponentName] = useState('');    
+    const [alreadyJumped, setAlreadyJumped] = useState(false);    
 
     const dispatch = useDispatch();
     const stateArr = [];
@@ -38,7 +37,7 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
             console.log(msg)
             dispatch(addText(msg));
             if(name && name !== loginTracker.player.name){
-                setOpponentName(name)
+                dispatch(setOpponentName(name))
                 if(loginTracker.path === 'created'){
                     socket.emit('send msg',loginTracker.room, 
                     { name: loginTracker.player.name, text:`Welcome ${name}`, color: loginTracker.player.color},
@@ -337,8 +336,8 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
                 })
             }
             <button className="reset" onClick = {onClickReset} >Reset</button>
-            <p className="player-name">{loginTracker.player.name}</p>
-        <p className="opponent-name">{opponentName}</p>
+            <p className="player-name" style={{color: loginTracker.player.color}}>{loginTracker.player.name}</p>
+            <p className="opponent-name" style={{color: loginTracker.player.color === "blue" ? "white": "blue"}}>{opponentName.name}</p>
         </>
     );
 }
@@ -347,7 +346,9 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
 const mapStateToProps = (state) => {
     return { movementReducer: state.movementReducer,
              turnTracker: state.turnTracker,
-             loginTracker: state.loginTracker };
+             loginTracker: state.loginTracker,
+            opponentName: state.opponentName };
 }
 
-export default connect(mapStateToProps, { checkerHighlight, clearHighlight, checkerMove, setKing, addText, deleteChecker, changeTurn ,resetBoard, resetTurn })(Checker);
+export default connect(mapStateToProps, { checkerHighlight, clearHighlight, checkerMove, setKing, 
+        addText, deleteChecker, changeTurn ,resetBoard, resetTurn, setOpponentName })(Checker);
