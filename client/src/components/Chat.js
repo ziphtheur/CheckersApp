@@ -11,14 +11,13 @@ const Chat = ({loginTracker, chatBox}) => {
     useEffect(() => {
         socket = io('https://mern-checkers.herokuapp.com/')
 
-        socket.emit('send msg', loginTracker.room, { name: 'Admin', text:`${loginTracker.player.name} has joined the game`, color: 'white' })
+        socket.emit('send msg', loginTracker.room, { name: 'Admin', text:`${loginTracker.player.name} has joined the game`, color: 'gold' })
     }, [loginTracker])
 
     const inputChange = (event) => {
         setInputText(event.target.value);
     }
     const onClickSubmit = (event) => {
-        console.log(chatBox)
         event.preventDefault();
         let textColor = () =>{
             return loginTracker.player.color === 'white' ? 'red' : 'blue'
@@ -35,8 +34,9 @@ const Chat = ({loginTracker, chatBox}) => {
 
     return (
         <div>
-            <div  className="messages">{chatBox.map(text =><><div style={{ color: text.color, display: "inline"}} 
-            className="username">{text.name}:_</div>{text.text} <br></br></>   )}</div>
+            <div className="messages">{chatBox.map(text =><div className="single-message">
+    <div style={{ color: text.color, flexDirection: "row"}}  className="username">{text.name}:&nbsp;</div>{text.text}</div>)}
+            </div>
             <form onSubmit={onClickSubmit}>
                 <input className="msg-input" type="text" value={inputText} onChange={inputChange} required />
                 <input className="msg-submit" type="submit" value="Send"/>

@@ -1,6 +1,7 @@
 .messages {
     font-size: 20px;
     position: absolute;
+    display: flex;
     top: 10vh;
     right: 1vw;
     width: 25vw;
@@ -10,6 +11,7 @@
     border: 1px solid black;
     overflow-y: scroll;
     overflow-wrap: break-word;
+    flex-direction: column-reverse;
 }
 .msg-input{
     position: absolute;
@@ -28,4 +30,8 @@
     font-size: 20px;
     right: 1vw;
     top: 80.1vh;
+}
+.single-message{
+    display: flex;
+    
 }

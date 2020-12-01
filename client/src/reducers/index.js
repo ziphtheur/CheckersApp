@@ -290,8 +290,7 @@ const loginTracker = createReducer(
 const chatBox = createReducer([],
     {
         ADD_TEXT: (state, action) => {
-            console.log(action.payload)
-            return [...state, action.payload]
+            return [action.payload, ...state]
         }
 
     }
