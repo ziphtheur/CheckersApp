@@ -1,10 +1,9 @@
 import React from 'react';
 import Checker from './Checker';
 import Chat from './Chat';
+import { connect } from 'react-redux';
 
 class Board extends React.Component {
-
-     
 
      buildBoard = () => {
         this.board1 = [];
@@ -46,22 +45,27 @@ class Board extends React.Component {
         }   
         return this.board1      
     }
-    
+
+    boxColor1 = () => {
+        return this.props.loginTracker.player.color === "blue" ? "red" : "black"        
+    }
+    boxColor2 =  () => {
+         return this.props.loginTracker.player.color === "blue" ? "black" : "red" 
+    }
 
     
 render(){
-    
     return (
         <>
         
         <div className="board-container">
-            <div className="board2">
+            <div className="boardwhite">
                 <Checker />
             </div>
             <div className="board">                
                     {this.buildBoard().map((num, i) => num.number === 1 
-                    ? <Rows class="black box" key={i + 64} />
-                    : <Rows class="red box" key={i + 64} />)}
+                    ? <Rows class={`${this.boxColor1()} box`} key={i + 64} />
+                    : <Rows class={`${this.boxColor2()} box`} key={i + 64} />)}
             </div>
             <Chat />
         </div>
@@ -73,6 +77,10 @@ const Rows = (props) => {
     return <div className={props.class}></div>
 }
 
+const mapStateToProps = (state) => {
+    return {
+        loginTracker: state.loginTracker
+    }
+}
 
-
-export default Board;
+export default connect(mapStateToProps)(Board);

@@ -53,6 +53,11 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
             .catch(err => console.log(err))       
         })   
 
+        if(loginTracker.player.color === "blue"){
+            document.querySelector(".boardwhite").classList.replace("boardwhite", "boardblue")
+            
+        }
+
     }, [loginTracker, dispatch])
     
 
