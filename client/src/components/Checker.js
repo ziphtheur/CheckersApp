@@ -11,7 +11,8 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
     const [selected, setSelected] = useState(null);
     const [selectedColor, setSelectedColor] = useState(null);
     const [selectedKing, setSelectedKing] = useState(false);
-    const [alreadyJumped, setAlreadyJumped] = useState(false);     
+    const [alreadyJumped, setAlreadyJumped] = useState(false); 
+    const [opponentName, setOpponentName] = useState('');    
 
     const dispatch = useDispatch();
     const stateArr = [];
@@ -33,9 +34,16 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
             console.log(func) 
             dispatch(func)
         })
-        socket.on('recieve msg', msg => {
+        socket.on('recieve msg', (msg, name)=> {
             console.log(msg)
             dispatch(addText(msg));
+            if(name && name !== loginTracker.player.name){
+                setOpponentName(name)
+                if(loginTracker.path === 'created'){
+                    socket.emit('send msg',loginTracker.room, { name: loginTracker.player.name, text:`Welcome ${name}`},
+                    loginTracker.player.name)
+                }
+            }
         })
                 
         socket.on('connect', async () => {
@@ -54,8 +62,7 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
         })   
 
         if(loginTracker.player.color === "blue"){
-            document.querySelector(".boardwhite").classList.replace("boardwhite", "boardblue")
-            
+            document.querySelector(".boardwhite").classList.replace("boardwhite", "boardblue")            
         }
 
     }, [loginTracker, dispatch])
@@ -329,6 +336,8 @@ const Checker = ({movementReducer, turnTracker, loginTracker}) => {
                 })
             }
             <button className="reset" onClick = {onClickReset} >Reset</button>
+            <p className="player-name">{loginTracker.player.name}</p>
+        <p className="opponent-name">{opponentName}</p>
         </>
     );
 }

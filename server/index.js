@@ -57,10 +57,15 @@ connection.once('open', () => {
         io.in(roomName).emit('send logic' , func2)
         console.log(`${roomName} joined`, func)
     })
-    socket.on('send msg', (roomName, msg) => {
-        console.log(roomName, msg)
-        io.in(roomName).emit('recieve msg', msg)
+    socket.on('send msg', (roomName, msg, name) => {
+        if(name){
+            io.in(roomName).emit('recieve msg', msg, name)
+        }else{
+            io.in(roomName).emit('recieve msg', msg, false)
+        }
+        
     })
+    
     socket.on('update socketid', (room) => {
         console.log(room)
         if(room.path === 'created'){

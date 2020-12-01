@@ -11,7 +11,7 @@ const Chat = ({loginTracker, chatBox}) => {
     useEffect(() => {
         socket = io('https://mern-checkers.herokuapp.com/')
 
-        socket.emit('send msg', loginTracker.room, { name: 'Admin', text:`${loginTracker.player.name} has joined the game`, color: 'gold' })
+        socket.emit('send msg', loginTracker.room, { name: 'Admin', text:`${loginTracker.player.name} has joined the game`, color: 'gold' }, loginTracker.player.name)
     }, [loginTracker])
 
     const inputChange = (event) => {
@@ -28,7 +28,7 @@ const Chat = ({loginTracker, chatBox}) => {
              text: inputText,
              color: textColor()
         }
-        socket.emit('send msg', loginTracker.room, sendMsg)      
+        socket.emit('send msg', loginTracker.room, sendMsg, false)      
         setInputText('')
     }
 

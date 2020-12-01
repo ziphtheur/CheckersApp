@@ -15,7 +15,7 @@
 .board, .boardwhite, .boardblue {
     position: absolute;
     left: 20vw;
-    top: 5vh;
+    top: 10vh;
     width: 45vw;
     height: 45vw;
     display: grid;
