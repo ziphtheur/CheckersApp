@@ -75,3 +75,26 @@
     max-height: 10vh;
     overflow: hidden;
 }
+.win-screen{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -10vh;
+    left: -25vw;
+    color: purple;
+    background-color: rgba(0, 0, 0, 0.603);
+    width: 105vw;
+    height: 105vh;
+    font-size: 48px;
+    z-index: 10;
+    
+}
+.win-button{
+    background-color:rgb(64, 151, 97);
+    top: 55vh;
+    left: 20vw;
+    width: 10vw;
+    height: 10vh;
+    font-size: 28px;
+}

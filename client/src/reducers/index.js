@@ -310,10 +310,28 @@ const opponentName = createReducer(
      
 )
 
+const checkerCounter =createReducer(
+    {white: 12, blue: 12},
+    {
+        DECREMENT: (state, action) => {
+            action.payload === "white" ? state.blue-- : state.white--
+        },
+        CONCEDE: (state, action) => {
+            action.payload === 'white' ? state.white = 0 : state.blue = 0
+        },
+        COUNT_RESET: (state, action) => {
+            state.white = 12;
+            state.blue = 12;
+        }
+    }
+    
+)
+
 export default combineReducers({
     turnTracker: turnTracker,
     movementReducer : clickReducer,
     loginTracker: loginTracker,
     chatBox: chatBox,
-    opponentName: opponentName
+    opponentName: opponentName,
+    checkerCounter: checkerCounter
 })

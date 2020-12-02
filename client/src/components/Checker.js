@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { connect, useDispatch} from 'react-redux'; 
 import { checkerHighlight, clearHighlight, checkerMove, setKing, deleteChecker, 
-    changeTurn, resetBoard, resetTurn , addText, setOpponentName} from '../actions';
+    changeTurn, resetBoard, resetTurn , addText, setOpponentName, checkerCount, concede, countReset} from '../actions';
+import WinScreen from './WinScreen';
 import axios from 'axios';
 import io from 'socket.io-client';
 
@@ -82,12 +83,14 @@ const Checker = ({movementReducer, turnTracker, loginTracker, opponentName}) => 
                     socket.emit('send logic', deleteChecker(selected - 3), loginTracker.room, error => {
                         if (error) console.log(error)
                     })
+                    socket.emit('send logic', checkerCount(loginTracker.player.color), loginTracker.room)
                     
                 }
                 if(getAttrib("data-row") === 'odd'){
                     socket.emit('send logic', deleteChecker(selected - 4), loginTracker.room, error => {
                         if (error) console.log(error)
                     })
+                    socket.emit('send logic', checkerCount(loginTracker.player.color), loginTracker.room)
                 }
             }
 
@@ -96,12 +99,13 @@ const Checker = ({movementReducer, turnTracker, loginTracker, opponentName}) => 
                     socket.emit('send logic', deleteChecker(selected - 4), loginTracker.room, error => {
                         if (error) console.log(error)
                     })
-
+                    socket.emit('send logic', checkerCount(loginTracker.player.color), loginTracker.room)
                 }
                 if(getAttrib("data-row") === 'odd'){
                     socket.emit('send logic', deleteChecker(selected - 5), loginTracker.room, error => {
                         if (error) console.log(error)
                     })
+                    socket.emit('send logic', checkerCount(loginTracker.player.color), loginTracker.room)
                 }
             }
             if(getAttrib("data-key") - selected === 7){
@@ -109,23 +113,27 @@ const Checker = ({movementReducer, turnTracker, loginTracker, opponentName}) => 
                     socket.emit('send logic', deleteChecker(parseInt(selected) + 4), loginTracker.room, error => {
                         if (error) console.log(error)
                     })
+                    socket.emit('send logic', checkerCount(loginTracker.player.color), loginTracker.room)
                 }
                 if(getAttrib("data-row") === 'odd'){
                     socket.emit('send logic', deleteChecker(parseInt(selected) + 3), loginTracker.room, error => {
                         if (error) console.log(error)
                     })
+                    socket.emit('send logic', checkerCount(loginTracker.player.color), loginTracker.room)
                 }
             }
             if(getAttrib("data-key") - selected === 9){
                 if(getAttrib("data-row") === 'even'){
                     socket.emit('send logic', deleteChecker(parseInt(selected) + 5), loginTracker.room, error => {
                         if (error) console.log(error)
-                    });
+                    })
+                    socket.emit('send logic', checkerCount(loginTracker.player.color), loginTracker.room)
                 }
                 if(getAttrib("data-row") === 'odd'){
                     socket.emit('send logic', deleteChecker(parseInt(selected) + 4), loginTracker.room, error => {
                         if (error) console.log(error)
-                    });
+                    })
+                    socket.emit('send logic', checkerCount(loginTracker.player.color), loginTracker.room)
                 }
             }
             
@@ -310,21 +318,22 @@ const Checker = ({movementReducer, turnTracker, loginTracker, opponentName}) => 
         
         console.log(getAttrib("data-key"))
     }
-    
-    
+
+    const onClickConcede = () => {
+        socket.emit('send logic', concede(loginTracker.player.color), loginTracker.room)
+    }   
+
     const onClickReset = () => {
         socket.emit('send logic', resetBoard(), loginTracker.room, error => {
             if (error) console.log(error)
         })
+        socket.emit('send logic', countReset(), loginTracker.room);
         if(turnTracker.turn !== ' blue'){
             socket.emit('send logic', resetTurn(), loginTracker.room, error => {
                 if (error) console.log(error)
             })
         }
     }
-    
-
-    
 
     return (
         <>
@@ -335,9 +344,11 @@ const Checker = ({movementReducer, turnTracker, loginTracker, opponentName}) => 
                 </div>
                 })
             }
-            <button className="reset" onClick = {onClickReset} >Reset</button>
+            <button className="reset" onClick = {() => onClickConcede()} >Concede</button>
             <p className="player-name" style={{color: loginTracker.player.color}}>{loginTracker.player.name}</p>
             <p className="opponent-name" style={{color: loginTracker.player.color === "blue" ? "white": "blue"}}>{opponentName.name}</p>
+            <WinScreen />
+            <button type="button" className="win-screen win-button invis" onClick={() => onClickReset()}>New Game</button>
         </>
     );
 }
@@ -351,4 +362,4 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, { checkerHighlight, clearHighlight, checkerMove, setKing, 
-        addText, deleteChecker, changeTurn ,resetBoard, resetTurn, setOpponentName })(Checker);
+        addText, deleteChecker, changeTurn ,resetBoard, resetTurn, setOpponentName, checkerCount, concede, countReset })(Checker);

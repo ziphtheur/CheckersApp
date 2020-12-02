@@ -4,13 +4,14 @@ import { connect, } from 'react-redux';
 import './Board.css';
 import './Checker.css';
 
+
 class App extends React.Component{
 
     turnName = () => {
         if(this.props.turnTracker.turn === this.props.loginTracker.player.color){
             return `${this.props.loginTracker.player.name}'s Turn`
         }else{
-            return `${this.props.opponentName.name}'s Turn` //<<<<<<<< FINISH THIS
+            return `${this.props.opponentName.name}'s Turn`
         }
     }
 

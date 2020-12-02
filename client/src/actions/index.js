@@ -75,4 +75,21 @@ export const setOpponentName = (name) => {
         payload: name
     }
 }
+export const checkerCount = (color) => {
+    return{
+        type: "DECREMENT",
+        payload: color
+    }
+}
+export const concede = (color) => {
+    return{
+        type: "CONCEDE",
+        payload: color
+    }
+}
+export const countReset = () => {
+    return{
+        type: "COUNT_RESET"
+    }
+}
     
